@@ -7,6 +7,7 @@
         <div class="form-cont">
             <h1 class="form-title">CREATE A CHINPOKOMON</h1>
           <form>
+            <!-- <form action="/account" method="post"> -->
             <label for="NAME">NAME</label>
             <input type="text" name="NAME">
             <label for="ABILITY1">ABILITY1</label>
@@ -15,28 +16,39 @@
             <input type="text" name="ABILITY2">
             <label for="ABILITY3">ABILITY3</label>
             <input type="text" name="ABILITY3">
-            <label for="IMAGE">IMAGE</label>
-            <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000">
-            <input type="hidden" name="AUTHOR">
+            <!-- <label for="IMAGE">IMAGE</label> -->
+            <!-- <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000"> -->
+            <input type="hidden" name="AUTHOR" data-doc="TESTUSER">
+            <!-- <button>Hit me</button> -->
             <button id="formsubmit" type="button">Create Chinpokomon</button>
-          </form>
+        </form>
         </div>
 
 
         <div class="all-pokomons">
-            <div class="pokomon-cont">
-                <div class="pokomon-image">
-                    <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
-                </div>
-                <div class="pokomon-content">
-                    <h1>Name of Chinpoko</h1>
-                    <h2>Abilities:</h2>
-                    <p>1 - puff</p>
-                    <p>2 - slime</p>
-                    <p>3 - rock hard</p>
-                    <p class="author-para">name of author</p>
-                </div>
-            </div>
+
+            <%if(pokomon.length > 0){%>
+                <%pokomon.forEach(pokomons => {%>
+
+                    <div class="pokomon-cont">
+                        <div class="pokomon-image">
+                            <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
+                        </div>
+                        <div class="pokomon-content">
+                            <h1><%=pokomons.name%></h1>
+                            <h2>Abilities:</h2>
+                            <p>1 - <%=pokomons.ability1%></p>
+                            <p>2 - <%=pokomons.ability2%></p>
+                            <p>3 - <%=pokomons.ability3%></p>
+                            <p class="author-para"><%=pokomons.author%></p>
+                        </div>
+        
+                    </div>
+      
+                <%})%>
+              <%}else{%>
+                <p>THERES NOTHING TO DISPLAY</p>
+              <%}%>
 
         </div>
 
@@ -45,5 +57,7 @@
 
     </div>
   </div>
+
+  <script src="/JS/account.js"></script>
 
 <%- include('partials/footer'); -%>

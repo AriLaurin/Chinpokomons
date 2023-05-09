@@ -6,4 +6,6 @@ const router  = Router(); ///creates a new router
 router.get("/", Controller.home_get);
 router.get("/home/user", Controller.account_get);
 
+router.post("/account", Controller.account_post);
+
 module.exports = router;

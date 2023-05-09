@@ -23,7 +23,7 @@ const pokomonModel = new mongoose.Schema({
     }
   }, {timestamps: true});
   
-  const Blog = mongoose.model('Blog', blogModel);
+  const Pokomon = mongoose.model('Pokomon', pokomonModel);
 
 
-module.exports = Blog;
+module.exports = Pokomon;

@@ -7,6 +7,8 @@ const cookieParser = require("cookie-parser");
 
 const app = express();
 
+
+app.use(express.urlencoded({extended:true}))
 // middleware
 app.use(express.static('public'));
 app.use(express.json()); //takes any json data from requests, and parses it into a js code
