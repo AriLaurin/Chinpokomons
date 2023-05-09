@@ -1,0 +1,49 @@
+<%- include('partials/header'); -%>
+
+
+    <div class="center-body">
+
+
+        <div class="form-cont">
+            <h1 class="form-title">CREATE A CHINPOKOMON</h1>
+          <form>
+            <label for="NAME">NAME</label>
+            <input type="text" name="NAME">
+            <label for="ABILITY1">ABILITY1</label>
+            <input type="text" name="ABILITY1">
+            <label for="ABILITY2">ABILITY2</label>
+            <input type="text" name="ABILITY2">
+            <label for="ABILITY3">ABILITY3</label>
+            <input type="text" name="ABILITY3">
+            <label for="IMAGE">IMAGE</label>
+            <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000">
+            <input type="hidden" name="AUTHOR">
+            <button id="formsubmit" type="button">Create Chinpokomon</button>
+          </form>
+        </div>
+
+
+        <div class="all-pokomons">
+            <div class="pokomon-cont">
+                <div class="pokomon-image">
+                    <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
+                </div>
+                <div class="pokomon-content">
+                    <h1>Name of Chinpoko</h1>
+                    <h2>Abilities:</h2>
+                    <p>1 - puff</p>
+                    <p>2 - slime</p>
+                    <p>3 - rock hard</p>
+                    <p class="author-para">name of author</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="bottom-body">
+
+    </div>
+  </div>
+
+<%- include('partials/footer'); -%>
