@@ -3,7 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Routes = require("./routes/routes"); //importing the routes so our app actually uses them
 const cookieParser = require("cookie-parser");
-// const {checkUser, requireAuth} = require("./middleware/middleware");
+const {checkUser, requireAuth} = require("./middleware/middleware");
 
 const app = express();
 
@@ -25,4 +25,5 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
   .catch((err) => console.log(err));
 
 
+app.get("*", checkUser); // * means every route
 app.use(Routes);

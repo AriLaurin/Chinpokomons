@@ -3,30 +3,8 @@
 
     <div class="center-body">
 
-
-        <div class="form-cont">
-            <h1 class="form-title">CREATE A CHINPOKOMON</h1>
-          <form>
-            <!-- <form action="/account" method="post"> -->
-            <label for="NAME">NAME</label>
-            <input type="text" name="NAME">
-            <label for="ABILITY1">ABILITY1</label>
-            <input type="text" name="ABILITY1">
-            <label for="ABILITY2">ABILITY2</label>
-            <input type="text" name="ABILITY2">
-            <label for="ABILITY3">ABILITY3</label>
-            <input type="text" name="ABILITY3">
-            <!-- <label for="IMAGE">IMAGE</label> -->
-            <!-- <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000"> -->
-            <input type="hidden" name="AUTHOR" data-doc="gnome@gaming.no">
-            <!-- <button>Hit me</button> -->
-            <button id="formsubmit" type="button">Create Chinpokomon</button>
-        </form>
-        </div>
-
-
         <div class="all-pokomons">
-
+            <h1 id="user-pokos">Chinpokos by <%=pokos[0].author%></h1>
             <%if(pokos.length > 0){%>
                 <%pokos.forEach(pokomons => {%>
 
@@ -57,7 +35,5 @@
 
     </div>
   </div>
-
-  <script src="/JS/account.js"></script>
 
 <%- include('partials/footer'); -%>

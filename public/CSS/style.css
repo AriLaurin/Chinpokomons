@@ -93,6 +93,8 @@ a:hover{
       .author-para{
         padding-right: 1em;
         text-align: right;
+        font-family: 'Dancing Script', cursive;
+        font-size: 1.5em;
       }
 
       .form-title {
@@ -123,7 +125,7 @@ a:hover{
         margin-bottom: 0.5em;
       }
       
-      input[type="text"] {
+      input {
         display: block;
         width: 100%;
         padding: 0.5em;
@@ -162,4 +164,9 @@ a:hover{
         background-color: #3e8e41;
         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
         cursor: pointer;
+      }
+
+      #user-pokos{
+        text-align: center;
+        color: #A2AD91;
       }
