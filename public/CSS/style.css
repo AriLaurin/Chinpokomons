@@ -170,3 +170,9 @@ a:hover{
         text-align: center;
         color: #A2AD91;
       }
+
+      #no-display{
+        text-align: center;
+        color: #A2AD91;
+        font-size: 2em;
+      }

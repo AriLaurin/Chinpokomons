@@ -4,51 +4,55 @@
     <div class="center-body">
 
 
-        <div class="form-cont">
-            <h1 class="form-title">CREATE A CHINPOKOMON</h1>
-          <form>
-            <!-- <form action="/account" method="post"> -->
-            <label for="NAME">NAME</label>
-            <input type="text" name="NAME">
-            <label for="ABILITY1">ABILITY1</label>
-            <input type="text" name="ABILITY1">
-            <label for="ABILITY2">ABILITY2</label>
-            <input type="text" name="ABILITY2">
-            <label for="ABILITY3">ABILITY3</label>
-            <input type="text" name="ABILITY3">
-            <!-- <label for="IMAGE">IMAGE</label> -->
-            <!-- <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000"> -->
-            <input type="hidden" name="AUTHOR" data-doc="gnome@gaming.no">
-            <!-- <button>Hit me</button> -->
-            <button id="formsubmit" type="button">Create Chinpokomon</button>
-        </form>
-        </div>
+
 
 
         <div class="all-pokomons">
-
-            <%if(pokos.length > 0){%>
-                <%pokos.forEach(pokomons => {%>
-
-                    <div class="pokomon-cont">
-                        <div class="pokomon-image">
-                            <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
-                        </div>
-                        <div class="pokomon-content">
-                            <h1><%=pokomons.name%></h1>
-                            <h2>Abilities:</h2>
-                            <p>1 - <%=pokomons.ability1%></p>
-                            <p>2 - <%=pokomons.ability2%></p>
-                            <p>3 - <%=pokomons.ability3%></p>
-                            <p class="author-para"><%=pokomons.author%></p>
-                        </div>
-        
+            <%if(pokos.length > 0 && pokos[0].author === user.email){%>
+                <%if(pokos.length > 0){%>
+                    <div class="form-cont">
+                        <h1 class="form-title">CREATE A CHINPOKOMON</h1>
+                      <form>
+                        <label for="NAME">NAME</label>
+                        <input type="text" name="NAME">
+                        <label for="ABILITY1">ABILITY1</label>
+                        <input type="text" name="ABILITY1">
+                        <label for="ABILITY2">ABILITY2</label>
+                        <input type="text" name="ABILITY2">
+                        <label for="ABILITY3">ABILITY3</label>
+                        <input type="text" name="ABILITY3">
+                        <!-- <label for="IMAGE">IMAGE</label> -->
+                        <!-- <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000"> -->
+                        <input type="hidden" name="AUTHOR" data-doc="gnome@gaming.no">
+                        <button id="formsubmit" type="button">Create Chinpokomon</button>
+                    </form>
                     </div>
-      
-                <%})%>
-              <%}else{%>
-                <p>THERES NOTHING TO DISPLAY</p>
+    
+                    <%pokos.forEach(pokomons => {%>
+    
+                        <div class="pokomon-cont">
+                            <div class="pokomon-image">
+                                <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
+                            </div>
+                            <div class="pokomon-content">
+                                <h1><%=pokomons.name%></h1>
+                                <h2>Abilities:</h2>
+                                <p>1 - <%=pokomons.ability1%></p>
+                                <p>2 - <%=pokomons.ability2%></p>
+                                <p>3 - <%=pokomons.ability3%></p>
+                                <p class="author-para"><%=pokomons.author%></p>
+                            </div>
+            
+                        </div>
+          
+                    <%})%>
+                  <%}%>
+            <%}else{%>
+                <div class="error-display">
+                    <p id="no-display">PERMISSION DENIED</p>
+                </div>
               <%}%>
+           
 
         </div>
 

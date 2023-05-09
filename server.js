@@ -7,7 +7,6 @@ const {checkUser, requireAuth} = require("./middleware/middleware");
 
 const app = express();
 
-
 app.use(express.urlencoded({extended:true}))
 // middleware
 app.use(express.static('public'));
@@ -23,6 +22,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true})
   .then(console.log("DATABASE STATUS: CONNECTED"))
   .then(console.log("SERVER STATUS: ONLINE"))
   .catch((err) => console.log(err));
+
 
 
 app.get("*", checkUser); // * means every route

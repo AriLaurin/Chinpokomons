@@ -4,8 +4,9 @@
     <div class="center-body">
 
         <div class="all-pokomons">
-            <h1 id="user-pokos">Chinpokos by <%=pokos[0].author%></h1>
+
             <%if(pokos.length > 0){%>
+                <h1 id="user-pokos">Chinpokos by <%=pokos[0].author%></h1>
                 <%pokos.forEach(pokomons => {%>
 
                     <div class="pokomon-cont">
@@ -25,7 +26,9 @@
       
                 <%})%>
               <%}else{%>
-                <p>THERES NOTHING TO DISPLAY</p>
+                <div class="error-display">
+                    <p id="no-display">THIS USER HAS NO POKOMONS TO DISPLAY</p>
+                </div>
               <%}%>
 
         </div>
