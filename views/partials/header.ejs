@@ -19,9 +19,16 @@
       <div class="header-bar">
         <% if (user){ %>
           <img src="/IMG/logo.png" alt="Website Logo of A Chinpokomon">
-          <a href="/">
-            <h1>Chinpokomon</h1>
-          </a>
+          <% if (user){ %>
+            <a href="/">
+              <h1>Chinpokomon - <%= user.email %></h1>
+            </a>
+            <% } else { %>
+              <a href="/">
+                <h1>Chinpokomon</h1>
+              </a>
+            <% } %>
+
   
           <a href="/logout">log out</a>
           <% } else { %>

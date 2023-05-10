@@ -125,7 +125,8 @@ module.exports.account_get = async (req,res) => {
       res.render('account', {title: 'All Pokomons', pokos: result})
   })
   .catch((err) => {
-    res.render("404");
+    res.render("error");
+    console.log(err);
 })
 
 }
@@ -164,7 +165,7 @@ module.exports.user_get = async (req,res) => {
       res.render('user', {title: 'All Pokos', pokos: result})
   })
   .catch((err) => {
-    res.render("404", {title: "Pokos not found"});
+    res.render("error", {title: "Pokos not found"});
 })
 
 }
