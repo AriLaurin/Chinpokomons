@@ -1,6 +1,11 @@
 const Pokomon = require("../models/Pokomon");
 const User = require("../models/User");
+const Image = require("../models/Image");
 const jwt = require("jsonwebtoken");
+const multer = require('multer');
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }).single('image');
 
 //handle errors
 const handleErrors = (err) => {
@@ -56,37 +61,40 @@ module.exports.home_get = async (req,res) => { //a function that renders our rou
     res.render("home", {pokomon: getDB})
 }
 
-// module.exports.account_get = async (req,res) => { //a function that renders our routes from AuthRoutes
-//     const getDB = await Pokomon.aggregate([
-//         {
-//           '$sort': {
-//             'createdAt': -1
-//           }
-//         }, {
-//             '$limit': 10
-//           }
-//       ]);
-//     res.render("account", {pokomon: getDB})
-// }
-
-module.exports.account_post = async (req,res) => {
-    const {name, ability1, ability2, ability3, author} = req.body;
-
-    console.log(req.body)
-
-    // res.send("hello")
-    // const user = await Pokomon.findById(id);
-    // const author = user.email;
-
-try {
-    const product = await Pokomon.create({name, ability1, ability2, ability3, author});
-    res.status(201);
-    console.log("Pokomon created:", product);
-}
-catch(err){
-    res.status(400)
-}
-}
+module.exports.account_post = async (req, res) => {
+    upload(req, res, async function (err) {
+      if (err instanceof multer.MulterError) {
+        // A Multer error occurred when uploading.
+        console.log(err);
+        res.status(500).send("Error saving image");
+      } else if (err) {
+        // An unknown error occurred when uploading.
+        console.log(err);
+        res.status(500).send("Error saving image");
+      } else {
+        // Everything went fine.
+        const { name, ability1, ability2, ability3, author } = req.body;
+  
+        const image = new Image({
+          name: req.file.originalname,
+          data: req.file.buffer,
+          contentType: req.file.mimetype,
+          key: name,
+        });
+  
+        try {
+          await image.save();
+          const product = await Pokomon.create({ name, ability1, ability2, ability3, author });
+          res.status(201);
+          console.log("Pokomon created:", product);
+          res.json(product);
+        } catch (err) {
+          console.log(err);
+          res.status(500).send("Error saving image");
+        }
+      }
+    });
+  };
 
 module.exports.signup_get = (req,res) => { //a function that renders our routes from AuthRoutes
   res.render("signup");
@@ -129,11 +137,6 @@ module.exports.login_get = (req,res) => { //a function that renders our routes f
 module.exports.login_post = async(req,res) => { //a function that renders our routes from AuthRoute
   const {email, password} = req.body; //destructuring, grabbing properties from our login post
   //console.log(req.body); //shows requests that are sent, such as emails and passwords
-
- // User.login(email, password);
-
-  //console.log(email, password);
-  //res.send("user login");
 
   try { 
       const user = await User.login(email, password) //if successful, const user gets the value of the account we accepted
