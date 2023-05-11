@@ -49,16 +49,14 @@ const createToken = (id) => {
 }
 
 module.exports.home_get = async (req,res) => { //a function that renders our routes from AuthRoutes
-    const getDB = await Pokomon.aggregate([
-        {
-          '$sort': {
-            'createdAt': -1
-          }
-        }, {
-            '$limit': 10
-          }
-      ]);
-    res.render("home", {pokomon: getDB})
+  await Pokomon.find().populate("image").sort({ createdAt: -1}).limit(10)
+  .then((result) => {
+      res.render('home', {title: 'All Pokomons', pokomon: result})
+  })
+  .catch((err) => {
+    res.render("error");
+    console.log(err);
+})
 }
 
 module.exports.account_post = async (req, res) => {
@@ -84,7 +82,7 @@ module.exports.account_post = async (req, res) => {
   
         try {
           await image.save();
-          const product = await Pokomon.create({ name, ability1, ability2, ability3, author });
+          const product = await Pokomon.create({ name, ability1, ability2, ability3, author, image });
           res.status(201);
           console.log("Pokomon created:", product);
           res.json(product);
@@ -120,7 +118,7 @@ module.exports.signup_post = async(req,res) => { //a function that renders our r
 
 module.exports.account_get = async (req,res) => {
   const user = req.params.user; //req.params is what we write into the url & using :user in the route, we can grab what we wrote
-  await Pokomon.find({author: user})
+  await Pokomon.find({author: user}).populate("image").sort({ createdAt: -1}).limit(10)
   .then((result) => {
       res.render('account', {title: 'All Pokomons', pokos: result})
   })

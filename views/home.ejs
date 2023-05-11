@@ -10,7 +10,7 @@
 
                     <div class="pokomon-cont">
                         <div class="pokomon-image">
-                            <img src="/IMG/pokomon.png" alt="A picture of a chinpokomon">
+                            <img src="data:<%= pokomons.image.contentType %>;base64,<%= pokomons.image.data.toString('base64') %>" alt="A picture of a chinpokomon">
                         </div>
                         <div class="pokomon-content">
                             <h1><%=pokomons.name%></h1>
