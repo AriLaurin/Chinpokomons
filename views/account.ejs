@@ -3,15 +3,11 @@
 
     <div class="center-body">
 
-
-        <%console.log(URLuser, user.email)%>
-
-
         <div class="all-pokomons">
             <%if(URLuser === user.email){%>
                     <div class="form-cont">
                         <h1 class="form-title">CREATE A CHINPOKOMON</h1>
-                      <form>
+                      <form method="POST" enctype="multipart/form-data">
                         <label for="NAME">NAME</label>
                         <input type="text" name="NAME">
                         <label for="ABILITY1">ABILITY1</label>
@@ -23,13 +19,15 @@
                         <label for="IMAGE">IMAGE</label>
                         <input type="file" id="image" name="IMAGE" accept="image/*" maxlength="5000000">
                         <input type="hidden" name="AUTHOR" data-doc="<%=user.email%>">
+                        <input type="hidden" name="UPDATEID" value="">
                         <button id="formsubmit" type="button">Create Chinpokomon</button>
+                        <button id="update-form" type="button" onclick="updateForm()">Update Chinpokomon</button>
                     </form>
                     </div>
     
                     <%pokos.forEach(pokomons => {%>
     
-                        <div class="pokomon-cont">
+                        <div class="pokomon-cont" onclick="fillForm('<%=pokomons.name%>', '<%=pokomons.ability1%>', '<%=pokomons.ability2%>', '<%=pokomons.ability3%>', '<%=pokomons.author%>', '<%=pokomons._id%>')">
                             <div class="pokomon-image">
                                     <img src="data:<%= pokomons.image.contentType %>;base64,<%= pokomons.image.data.toString('base64') %>" alt="A picture of a chinpokomon">
                               </div>

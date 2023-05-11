@@ -178,3 +178,44 @@ module.exports.pokomon_delete = (req,res) => {
       console.log(err);
   })
 }
+
+module.exports.pokomon_update = (req, res) => {
+  upload(req, res, async function (err) {
+    if (err instanceof multer.MulterError) {
+      console.log(err);
+      res.status(500).send("Error saving image");
+    } else if (err) {
+      console.log(err);
+      res.status(500).send("Error saving image");
+    } else {
+      const ID = req.params.updateId;
+      const { name, ability1, ability2, ability3, author } = req.body;
+      let image = null;
+      if (req.file) {
+        // process the image if it exists
+        image = new Image({
+          name: req.file.originalname,
+          data: req.file.buffer,
+          contentType: req.file.mimetype,
+          key: name,
+        });
+      }
+      const update = { name, ability1, ability2, ability3, author };
+      if (image) {
+        update.image = image;
+      }
+      Pokomon.findByIdAndUpdate(ID, update)
+        .then((result) => {
+          console.log('Updated Pokomon successfully');
+          res.status(204).send();
+        })
+        .catch((err) => {
+          console.log(err);
+          res.status(500).send("Error updating pokomon");
+        });
+    }
+  });
+};
+
+
+

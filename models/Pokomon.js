@@ -23,7 +23,7 @@ const pokomonModel = new mongoose.Schema({
     },
     image: {
       type: Object,
-      required: true
+      required: false
     }
   }, {timestamps: true});
   
