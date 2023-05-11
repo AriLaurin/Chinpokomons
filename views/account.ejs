@@ -4,12 +4,11 @@
     <div class="center-body">
 
 
-
+        <%console.log(URLuser, user.email)%>
 
 
         <div class="all-pokomons">
-            <%if(pokos.length > 0 && pokos[0].author === user.email){%>
-                <%if(pokos.length > 0){%>
+            <%if(URLuser === user.email){%>
                     <div class="form-cont">
                         <h1 class="form-title">CREATE A CHINPOKOMON</h1>
                       <form>
@@ -46,7 +45,6 @@
                         </div>
           
                     <%})%>
-                  <%}%>
             <%}else{%>
                 <div class="error-display">
                     <p id="no-display">PERMISSION DENIED</p>

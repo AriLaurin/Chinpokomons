@@ -37,6 +37,7 @@ formButton.addEventListener("click", async (e) => {
     const pokoData = await res.json();
        
     console.log(pokoData);
+    location.reload();
 
 } catch (err) {
     console.log(err)

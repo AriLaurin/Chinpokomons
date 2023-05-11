@@ -117,10 +117,10 @@ module.exports.signup_post = async(req,res) => { //a function that renders our r
 }
 
 module.exports.account_get = async (req,res) => {
-  const user = req.params.user; //req.params is what we write into the url & using :user in the route, we can grab what we wrote
-  await Pokomon.find({author: user}).populate("image").sort({ createdAt: -1}).limit(10)
+  const URLuser = req.params.user; //req.params is what we write into the url & using :user in the route, we can grab what we wrote
+  await Pokomon.find({author: URLuser}).populate("image").sort({ createdAt: -1}).limit(10)
   .then((result) => {
-      res.render('account', {title: 'All Pokomons', pokos: result})
+      res.render('account', {title: 'All Pokomons', pokos: result, URLuser})
   })
   .catch((err) => {
     res.render("error");
@@ -158,7 +158,7 @@ module.exports.logout_get = (req,res) => {
 
 module.exports.user_get = async (req,res) => {
   const user = req.params.user; //req.params is what we write into the url & using :user in the route, we can grab what we wrote
-  await Pokomon.find({author: user})
+  await Pokomon.find({author: user}).sort({ createdAt: -1})
   .then((result) => {
       res.render('user', {title: 'All Pokos', pokos: result})
   })
