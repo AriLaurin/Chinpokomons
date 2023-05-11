@@ -167,3 +167,14 @@ module.exports.user_get = async (req,res) => {
 })
 
 }
+
+module.exports.pokomon_delete = (req,res) => {
+  const ID = req.params.id;
+  Pokomon.findByIdAndDelete(ID)
+  .then(result => {
+    res.status(204).send();
+  })
+  .catch(err => {
+      console.log(err);
+  })
+}

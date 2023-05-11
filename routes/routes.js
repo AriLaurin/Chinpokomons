@@ -19,4 +19,6 @@ router.get("/logout", Controller.logout_get);
 router.get("/home/:user", requireAuth, Controller.account_get);
 router.get("/:user", requireAuth, Controller.user_get);
 
+router.delete("/home/:id", Controller.pokomon_delete);
+
 module.exports = router;

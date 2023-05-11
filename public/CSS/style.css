@@ -176,3 +176,13 @@ a:hover{
         color: #A2AD91;
         font-size: 2em;
       }
+
+      .delete{
+        margin-left: auto;
+        margin-right: 1.5em;
+        background-color: red;
+      }
+
+      .delete:hover{
+        background-color: darkred;
+      }

@@ -36,7 +36,7 @@ formButton.addEventListener("click", async (e) => {
     })
     const pokoData = await res.json();
        
-    console.log(pokoData);
+    // console.log(pokoData);
     location.reload();
 
 } catch (err) {
@@ -46,3 +46,16 @@ formButton.addEventListener("click", async (e) => {
 }
 
 })
+
+function deleteTRASH(id) {
+  const endpoint = `/home/${id}`;
+  console.log(endpoint);
+  fetch(endpoint, {
+    method: "DELETE",
+  })
+  .then(() => {
+    location.reload();
+  })
+  // .then(data => window.location.href = data.redirect)
+  .catch(err => console.log(err));
+}
