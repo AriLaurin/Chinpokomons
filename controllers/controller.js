@@ -116,7 +116,7 @@ module.exports.signup_post = async(req,res) => { //a function that renders our r
   }
 }
 
-module.exports.account_get = async (req,res) => {
+module.exports.account_get = async (req,res) => { 
   const URLuser = req.params.user; //req.params is what we write into the url & using :user in the route, we can grab what we wrote
   await Pokomon.find({author: URLuser}).populate("image").sort({ createdAt: -1}).limit(10)
   .then((result) => {
